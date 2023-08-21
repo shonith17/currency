@@ -30,7 +30,7 @@ export default function CurrencyExchange(props) {
                     value={targetCurrency}
                     onChange={event => setTargetCurrency(event.target.value)}
                 />
-                <button type="submit" className="convert">Convert</button>
+                <button type="submit" className="convert" onClick={() => props.table(prev => !prev)}>Convert</button>
             </div>
         </form>
     );

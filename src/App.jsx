@@ -9,6 +9,7 @@ import "./App.css"
 function App() {
   
   const [converted, onConverted] = React.useState(false)
+  const [table, setTable] = React.useState(false)
   const [message, setMessage] = React.useState('')
   const [flip, setFlip] = React.useState(false);
   const [baseCurrency, setBaseCurrency] = React.useState('')
@@ -53,11 +54,11 @@ console.log(baseCurrency)
     <>
         <Header />
         <div className="exchange">
-        <CurrencyExchange submit={handleConvertSubmit} flip={setFlip}/>
+        <CurrencyExchange submit={handleConvertSubmit} flip={setFlip} table={setTable}/>
         </div>
         {converted && <div className="message">{message}</div>}
         <div className="all-currencies" onClick={() => setAllCurrencies(true)}>Show All Currencies</div>
-        {allCurrencies && <CurrencyTable base={baseCurrency} amount={amount} converted={converted}/>}
+        {allCurrencies && <CurrencyTable base={baseCurrency} amount={amount} converted={converted} table={table}/>}
         <Footer />
     </>
   )

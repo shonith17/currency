@@ -26,7 +26,7 @@ export default function CurrencyTable(props) {
             for (const targetCurrency of targetCurrencies) {
               try {
                 const response = await fetch(
-                  `https://${host}/latest?from=${baseCurrency}&to=${targetCurrency}`
+                  `https://${host}/latest?amount=${props.amount}&from=${baseCurrency}&to=${targetCurrency}`
                 );
                 if (!response.ok) {
                   throw new Error("Network response was not ok");
@@ -44,7 +44,7 @@ export default function CurrencyTable(props) {
           fetchConversionRates();
         }
         
-      }, [props.converted]);
+      }, [props.table]);
 
       console.log(conversionRates)
     return (
