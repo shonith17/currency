@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    gap: 3rem;
+    padding-block: 3rem;
+    align-items: center;
+}
+
+.switch {
+    border: 2px solid white;
+    background-color: rgb(53, 53, 53);
+    color: white;
+    border-radius: 0.5rem;
+    padding-inline: 1rem;
+    padding-block: 0.5em;
+}
