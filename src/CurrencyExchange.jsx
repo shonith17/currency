@@ -4,8 +4,8 @@ import CurrencyAmount from "./CurrencyAmount";
 import "./CurrencyExchange.css";
 
 export default function CurrencyExchange(props) {
-    const [baseCurrency, setBaseCurrency] = React.useState("USD");
-    const [targetCurrency, setTargetCurrency] = React.useState("EUR");
+    const [baseCurrency, setBaseCurrency] = React.useState("");
+    const [targetCurrency, setTargetCurrency] = React.useState("");
 
     function handleClick() {
         props.flip(prev => !prev);
@@ -30,7 +30,7 @@ export default function CurrencyExchange(props) {
                     value={targetCurrency}
                     onChange={event => setTargetCurrency(event.target.value)}
                 />
-                <button type="submit">Convert</button>
+                <button type="submit" className="convert">Convert</button>
             </div>
         </form>
     );

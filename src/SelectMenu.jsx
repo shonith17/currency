@@ -5,6 +5,7 @@ export default function SelectMenu(props) {
         <div>
             <label htmlFor={props.name}>{props.type}</label>
             <select id={props.name} name={props.name} value={props.value} onChange={props.onChange}>
+                <option value="" disabled></option>
                 <option value="AUD">AUD</option>
                 <option value="BGN">BGN</option>
                 <option value="BRL">BRL</option>

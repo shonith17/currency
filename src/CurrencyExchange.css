@@ -13,3 +13,13 @@
     padding-inline: 1rem;
     padding-block: 0.5em;
 }
+
+.convert {
+    border: 2px solid rgb(0, 0, 0);
+    background-color: rgb(165, 230, 157);
+    color: white;
+    border-radius: 0.5rem;
+    padding-inline: 1rem;
+    padding-block: 0.7em;
+    transition: background-color 0.3s ease-in-out; /* Add a transition for background-color */
+}
