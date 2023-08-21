@@ -11,13 +11,13 @@ export default function CurrencyTable(props) {
         "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
         "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR",
         "ISK", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
-        "PLN", "RON", "RUB", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
+        "PLN", "RON", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
       ];
 
 
       React.useEffect(() => {
         if (props.converted) {
-          const baseCurrency = "USD"; // Set your desired base currency
+             // Set your desired base currency
           const host = "api.frankfurter.app";
     
           // Fetch conversion rates for each target currency
@@ -43,10 +43,28 @@ export default function CurrencyTable(props) {
     
           fetchConversionRates();
         }
-        console.log(conversionRates)
+        
       }, [props.converted]);
 
+      console.log(conversionRates)
     return (
-        <div>Hello World</div>
+        <div className="currency-table">
+      <table>
+        <thead>
+          <tr>
+            <th>{props.base}</th>
+            <th>{props.amount}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {targetCurrencies.map((currency) => (
+            <tr key={currency}>
+              <td>{currency}</td>
+              <td>{conversionRates[currency] || "N/A"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
     )
 }
