@@ -11,9 +11,7 @@ function App() {
   const [flip, setFlip] = React.useState(false);
 
   function handleSubmit(event) {
-    event.preventDefault()
-
-    onConverted(true)
+    event.preventDefault();
 
     const currencyAmount = event.target.elements.numberInput.value;
     const baseCurrency = event.target.elements.currency1.value;
@@ -21,14 +19,24 @@ function App() {
 
     const host = 'api.frankfurter.app';
     fetch(`https://${host}/latest?amount=${currencyAmount}&from=${baseCurrency}&to=${targetCurrency}`)
-    .then(resp => resp.json())
-    .then((data) => {
-      const convertedAmount = data.rates[targetCurrency]
-      setMessage(`${currencyAmount} ${baseCurrency} = ${convertedAmount} ${targetCurrency}`);
-  });
-
-
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return resp.json();
+        })
+        .then(data => {
+            const convertedAmount = data.rates[targetCurrency];
+            setMessage(`${currencyAmount} ${baseCurrency} = ${convertedAmount} ${targetCurrency}`);
+            onConverted(true); // Set the converted state after successful API call
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            setMessage('An error occurred while fetching data.');
+            onConverted(false); // Set the converted state in case of an error
+        });
 }
+
 
 
   return (
