@@ -39,8 +39,7 @@ const CurrencyChart = (props) => {
     if (chartInstanceRef.current) {
       chartInstanceRef.current.destroy(); // Destroy previous chart instance
     }
-
-
+    
     const chartRefCurrent = chartRef.current.getContext('2d');
     chartInstanceRef.current = new Chart(chartRefCurrent, {
       type: 'line',
