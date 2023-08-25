@@ -15,7 +15,40 @@ export default function CurrencyTable(props) {
         "ISK", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP",
         "PLN", "RON", "SEK", "SGD", "THB", "TRY", "USD", "ZAR"
       ];
-
+      const currencyFullNames = {
+        AUD: "Australian Dollar",
+        BGN: "Bulgarian Lev",
+        BRL: "Brazilian Real",
+        CAD: "Canadian Dollar",
+        CHF: "Swiss Franc",
+        CNY: "Chinese Yuan",
+        CZK: "Czech Koruna",
+        DKK: "Danish Krone",
+        EUR: "Euro",
+        GBP: "British Pound Sterling",
+        HKD: "Hong Kong Dollar",
+        HUF: "Hungarian Forint",
+        IDR: "Indonesian Rupiah",
+        ILS: "Israeli New Shekel",
+        INR: "Indian Rupee",
+        ISK: "Icelandic Króna",
+        JPY: "Japanese Yen",
+        KRW: "South Korean Won",
+        MXN: "Mexican Peso",
+        MYR: "Malaysian Ringgit",
+        NOK: "Norwegian Krone",
+        NZD: "New Zealand Dollar",
+        PHP: "Philippine Peso",
+        PLN: "Polish Złoty",
+        RON: "Romanian Leu",
+        SEK: "Swedish Krona",
+        SGD: "Singapore Dollar",
+        THB: "Thai Baht",
+        TRY: "Turkish Lira",
+        USD: "United States Dollar",
+        ZAR: "South African Rand",
+    };
+    
 
       React.useEffect(() => {
         if (props.converted) {
@@ -60,14 +93,14 @@ export default function CurrencyTable(props) {
                 <table>
                     <thead>
                         <tr>
-                            <th>{props.base}</th>
+                            <th>{`${currencyFullNames[props.base]} (${props.base})`}</th>
                             <th>{props.amount}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {targetCurrencies.map((currency) => (
                             <tr key={currency}>
-                                <td>{currency}</td>
+                                <td>{`${currencyFullNames[currency]} (${currency})`}</td>
                                 <td>{conversionRates[currency] || "N/A"}</td>
                             </tr>
                         ))}
