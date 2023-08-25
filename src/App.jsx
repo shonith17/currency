@@ -3,6 +3,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import CurrencyExchange from "./CurrencyExchange"
 import CurrencyTable from "./CurrencyTable"
+import CurrencyChart from "./CurrencyChart"
 import "./App.css"
 
 
@@ -11,8 +12,8 @@ function App() {
   const [converted, onConverted] = React.useState(false)
   const [table, setTable] = React.useState(false)
   const [message, setMessage] = React.useState('')
-  // const [flip, setFlip] = React.useState(false);
   const [baseCurrency, setBaseCurrency] = React.useState('')
+  const [targetCurrency, setTargetCurrency] = React.useState('')
   const [allCurrencies, setAllCurrencies] = React.useState(false)
   const [amount, setAmount] = React.useState("")
 
@@ -25,6 +26,7 @@ function App() {
     const targetCurrency = event.target.elements.currency2.value;
 
     setBaseCurrency(event.target.elements.currency1.value);
+    setTargetCurrency(event.target.elements.currency2.value);
     setAmount(event.target.elements.numberInput.value)
 
     const host = 'api.frankfurter.app';
@@ -62,12 +64,14 @@ function handleTableOn() {
             <CurrencyExchange submit={handleConvertSubmit} table={handleTableOn}/>
           </div>
           {converted && <div className="message">{message}</div>}
+          {converted && <CurrencyChart base={baseCurrency} target={targetCurrency}/>}
           <div className="all-currencies">
             <div onClick={() => setAllCurrencies(true)}>Show All Currencies</div>
           </div>
           {allCurrencies && <CurrencyTable base={baseCurrency} amount={amount} converted={converted} table={table}/>}
           </div>
         </div>
+    
         <Footer />
     </div>
   )
