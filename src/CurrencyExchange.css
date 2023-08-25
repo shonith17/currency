@@ -3,9 +3,15 @@
     gap: 3rem;
     padding-block: 3rem;
     align-items: center;
+    padding-inline: 1rem;
 }
-
+@media (max-width: 760px) {
+    .wrapper {
+        flex-direction: column;
+    }
+}
 .switch {
+    cursor: pointer;
     border: 2px solid white;
     background-color: rgb(53, 53, 53);
     color: white;
@@ -15,6 +21,7 @@
 }
 
 .convert {
+    cursor: pointer;
     border: 2px solid rgb(0, 0, 0);
     background-color: rgb(165, 230, 157);
     color: white;

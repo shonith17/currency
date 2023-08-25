@@ -7,8 +7,8 @@ export default function CurrencyExchange(props) {
     const [baseCurrency, setBaseCurrency] = React.useState("");
     const [targetCurrency, setTargetCurrency] = React.useState("");
 
-    function handleClick() {
-        props.flip(prev => !prev);
+
+    function handleSwitch() {
         setBaseCurrency(targetCurrency);
         setTargetCurrency(baseCurrency);
     }
@@ -23,14 +23,14 @@ export default function CurrencyExchange(props) {
                     value={baseCurrency}
                     onChange={event => setBaseCurrency(event.target.value)}
                 />
-                <div className="switch" onClick={handleClick}>Switch</div>
+                <div className="switch" onClick={handleSwitch}>Switch</div>
                 <SelectMenu
                     name="currency2"
                     type="Target Currency:"
                     value={targetCurrency}
                     onChange={event => setTargetCurrency(event.target.value)}
                 />
-                <button type="submit" className="convert" onClick={() => props.table(prev => !prev)}>Convert</button>
+                <button type="submit" className="convert" onClick={() => {props.table()}}>Convert</button>
             </div>
         </form>
     );

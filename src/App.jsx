@@ -11,7 +11,7 @@ function App() {
   const [converted, onConverted] = React.useState(false)
   const [table, setTable] = React.useState(false)
   const [message, setMessage] = React.useState('')
-  const [flip, setFlip] = React.useState(false);
+  // const [flip, setFlip] = React.useState(false);
   const [baseCurrency, setBaseCurrency] = React.useState('')
   const [allCurrencies, setAllCurrencies] = React.useState(false)
   const [amount, setAmount] = React.useState("")
@@ -21,10 +21,11 @@ function App() {
     event.preventDefault();
 
     const currencyAmount = event.target.elements.numberInput.value;
-    setAmount(event.target.elements.numberInput.value)
     const curr = event.target.elements.currency1.value
-    setBaseCurrency(event.target.elements.currency1.value);
     const targetCurrency = event.target.elements.currency2.value;
+
+    setBaseCurrency(event.target.elements.currency1.value);
+    setAmount(event.target.elements.numberInput.value)
 
     const host = 'api.frankfurter.app';
     fetch(`https://${host}/latest?amount=${currencyAmount}&from=${curr}&to=${targetCurrency}`)
@@ -48,19 +49,27 @@ function App() {
 
 }
 
+function handleTableOn() {
+  setTable(prevState => !prevState)
+}
 
-console.log(baseCurrency)
   return (
-    <>
+    <div className="app">
+      <div className="content">
         <Header />
-        <div className="exchange">
-        <CurrencyExchange submit={handleConvertSubmit} flip={setFlip} table={setTable}/>
+        <div className="middle">
+          <div className="exchange">
+            <CurrencyExchange submit={handleConvertSubmit} table={handleTableOn}/>
+          </div>
+          {converted && <div className="message">{message}</div>}
+          <div className="all-currencies">
+            <div onClick={() => setAllCurrencies(true)}>Show All Currencies</div>
+          </div>
+          {allCurrencies && <CurrencyTable base={baseCurrency} amount={amount} converted={converted} table={table}/>}
+          </div>
         </div>
-        {converted && <div className="message">{message}</div>}
-        <div className="all-currencies" onClick={() => setAllCurrencies(true)}>Show All Currencies</div>
-        {allCurrencies && <CurrencyTable base={baseCurrency} amount={amount} converted={converted} table={table}/>}
         <Footer />
-    </>
+    </div>
   )
 }
 
